@@ -18,8 +18,10 @@ const projectData = require("./modules/projects");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
+require("pg");
 
 projectData
   .initialize()
@@ -59,11 +61,9 @@ app.get("/solutions/projects/:id", (req, res) => {
 });
 
 app.use((req, res) => {
-  res
-    .status(404)
-    .render("404", {
-      message: "I'm sorry, we're unable to find what you're looking for.",
-    });
+  res.status(404).render("404", {
+    message: "I'm sorry, we're unable to find what you're looking for.",
+  });
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
