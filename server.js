@@ -66,4 +66,9 @@ app.use((req, res) => {
   });
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = app;               
+if (require.main === module) {     
+  app.listen(PORT, () =>
+    console.log(`Local: http://localhost:${PORT}`));
+}
+
