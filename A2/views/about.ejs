@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dim">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <link href="/css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('partials/navbar') %>
+
+    <div class="container mx-auto p-6">
+      <div class="hero bg-base-200 rounded-2xl mb-10">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold mb-4">About</h1>
+            <p>All about me and my journey in web development.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <img
+            src="/images/profile.jpg"
+            alt="Himanshu Khandelwal"
+            class="w-64 h-64 object-cover square-full shadow-lg border-4 border-black mx-auto"
+          />
+        </div>
+        <div>
+          <h2 class="text-3xl font-semibold mb-4">Himanshu Khandelwal</h2>
+          <p class="leading-relaxed">
+            I’m a Computer Programming student at Seneca Polytechnic passionate
+            about building efficient and modern web applications using
+            JavaScript, Node.js, and Express. I enjoy solving real-world
+            problems and learning new technologies. When I’m not coding, I like
+            to explore productivity tools, design simple UIs, and learn about
+            business and finance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="corporate">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Climate Solutions</title>
+    <link href="/css/main.css" rel="stylesheet" />
+  </head>
+  <body
+    style="background: linear-gradient(to bottom, #1b254b, #2c407f, #f3f5fa)"
+    class="text-base-content leading-relaxed"
+  >
+    <%- include('partials/navbar') %>
+
+    <main class="container mx-auto px-12 py-10">
+      <!-- Hero Section -->
+      <section
+        class="hero rounded-3xl shadow-lg mb-8 py-10"
+        style="background-color: #111831"
+      >
+        <div class="hero-content text-center py-4 text-white">
+          <div class="max-w-2xl mx-auto">
+            <h1 class="text-5xl font-extrabold mb-6 leading-tight">
+              Explore Climate Solutions
+            </h1>
+            <p class="text-2xl text-gray-200 mb-8 leading-snug">
+              Discover innovative projects shaping a sustainable and brighter
+              future for our planet.
+            </p>
+            <a
+              href="/solutions/projects"
+              class="btn btn-primary flex items-center justify-center text-lg font-semibold tracking-wide px-8 py-4 shadow-md hover:shadow-lg transition-all mx-auto block w-fit"
+            >
+              View All Projects
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <!-- Card 1 -->
+        <div
+          class="card bg-base-100 border shadow-2xl hover:shadow-3xl transition-transform hover:-translate-y-2 flex flex-col justify-between"
+        >
+          <figure class="w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden rounded-t-2xl">
+              <img
+                src="https://drawdown.org/sites/default/files/solutions/solution_farmlandrestoration01.jpg"
+                alt="Abandoned Farmland Restoration"
+                class="object-cover w-full h-full"
+              />
+            </div>
+          </figure>
+          <div class="card-body p-6 flex flex-col justify-between flex-1">
+            <h2 class="card-title text-3xl font-bold mb-3">
+              Abandoned Farmland Restoration
+            </h2>
+            <p class="text-lg text-gray-700 mb-6 flex-grow">
+              Restoring degraded farmland improves productivity while capturing
+              carbon from the atmosphere.
+            </p>
+            <div class="card-actions justify-end">
+              <a
+                href="/solutions/projects/1"
+                class="btn btn-outline btn-primary text-lg font-semibold py-2 px-5"
+                >Learn More</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="card bg-base-100 border shadow-2xl hover:shadow-3xl transition-transform hover:-translate-y-2 flex flex-col justify-between"
+        >
+          <figure class="w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden rounded-t-2xl">
+              <img
+                src="https://drawdown.org/sites/default/files/solutions2020/solution_alternativecement02.jpg"
+                alt="Alternative Cement"
+                class="object-cover w-full h-full"
+              />
+            </div>
+          </figure>
+          <div class="card-body p-6 flex flex-col justify-between flex-1">
+            <h2 class="card-title text-3xl font-bold mb-3">
+              Alternative Cement
+            </h2>
+            <p class="text-lg text-gray-700 mb-6 flex-grow">
+              Using low-carbon cement alternatives can reduce millions of tons
+              of CO₂ emissions annually.
+            </p>
+            <div class="card-actions justify-end">
+              <a
+                href="/solutions/projects/2"
+                class="btn btn-outline btn-primary text-lg font-semibold py-2 px-5"
+                >Learn More</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="card bg-base-100 border shadow-2xl hover:shadow-3xl transition-transform hover:-translate-y-2 flex flex-col justify-between"
+        >
+          <figure class="w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden rounded-t-2xl">
+              <img
+                src="https://drawdown.org/sites/default/files/solutions2020/solution_bicycle_infrastructure.jpg"
+                alt="Bicycle Infrastructure"
+                class="object-cover w-full h-full"
+              />
+            </div>
+          </figure>
+          <div class="card-body p-6 flex flex-col justify-between flex-1">
+            <h2 class="card-title text-3xl font-bold mb-3">
+              Bicycle Infrastructure
+            </h2>
+            <p class="text-lg text-gray-700 mb-6 flex-grow">
+              Better cycling infrastructure promotes clean transport and reduces
+              reliance on fossil fuels.
+            </p>
+            <div class="card-actions justify-end">
+              <a
+                href="/solutions/projects/3"
+                class="btn btn-outline btn-primary text-lg font-semibold py-2 px-5"
+                >Learn More</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
