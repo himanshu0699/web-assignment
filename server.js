@@ -21,7 +21,6 @@ const PORT = process.env.PORT || 8080;
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
-require("pg");
 
 projectData
   .initialize()
@@ -66,9 +65,7 @@ app.use((req, res) => {
   });
 });
 
-module.exports = app;               
-if (require.main === module) {     
-  app.listen(PORT, () =>
-    console.log(`Local: http://localhost:${PORT}`));
+module.exports = app;
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Local: http://localhost:${PORT}`));
 }
-
