@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lofi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Project</title>
+    <link href="/css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('partials/navbar') %>
+
+    <main class="container mx-auto max-w-3xl p-6">
+      <h1 class="text-3xl font-bold mb-4">Add Project</h1>
+
+      <% if (message) { %>
+      <div role="alert" class="alert alert-error mb-4">
+        <span><%= message %></span>
+      </div>
+      <% } %>
+
+      <form method="post" action="/solutions/addProject" class="space-y-4">
+        <input
+          name="title"
+          type="text"
+          placeholder="Project Title"
+          required
+          class="input input-bordered w-full"
+        />
+
+        <textarea
+          name="intro_short"
+          rows="3"
+          placeholder="Short Intro"
+          required
+          class="textarea textarea-bordered w-full"
+        ></textarea>
+
+        <label class="form-control w-full">
+          <span class="label-text">Sector</span>
+          <select
+            name="sector_id"
+            class="select select-bordered w-full"
+            required
+          >
+            <% sectors.forEach(s => { %>
+            <option value="<%= s.id %>"><%= s.name %></option>
+            <% }) %>
+          </select>
+        </label>
+
+        <button class="btn btn-success w-full">Add Project</button>
+      </form>
+    </main>
+  </body>
+</html>

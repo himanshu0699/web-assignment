@@ -6,49 +6,76 @@
     <title><%= project.title %></title>
     <link href="/css/main.css" rel="stylesheet" />
   </head>
+
   <body>
     <%- include('partials/navbar') %>
 
     <div class="container mx-auto p-6">
-      <div class="hero bg-base-200 rounded-2xl mb-10">
-        <div class="hero-content text-center">
-          <div class="max-w-md">
-            <h1 class="text-4xl font-bold mb-4"><%= project.title %></h1>
-            <p>Below, you will find detailed information about the project.</p>
+      <!-- header -->
+      <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold mb-2"><%= project.title %></h1>
+        <p>Below, you will find detailed information about the project.</p>
+      </div>
+
+      <!-- card -->
+      <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <figure>
+          <img
+            src="<%= project.feature_img_url && project.feature_img_url.trim()
+                     ? project.feature_img_url
+                     : '/images/no-image.png' %>"
+            alt="<%= project.title %>"
+            class="object-cover w-full max-h-80"
+          />
+        </figure>
+
+        <div class="card-body">
+          <p class="mb-4"><%= project.intro_short %></p>
+
+          <% if (project.impact) { %>
+          <h3 class="font-semibold mb-2">Impact</h3>
+          <p class="mb-4"><%= project.impact %></p>
+          <% } %> <% if (project.original_source_url) { %>
+          <a
+            href="<%= project.original_source_url %>"
+            target="_blank"
+            class="btn btn-outline btn-primary mb-6"
+            >Learn More</a
+          >
+          <% } %> <% if (session && session.user) { %>
+          <div class="flex flex-col sm:flex-row gap-3 mb-6">
+            <a
+              href="/solutions/editProject/<%= project.id %>"
+              class="btn btn-secondary w-full sm:w-auto"
+              >Edit Project</a
+            >
+
+            <form
+              action="/solutions/deleteProject/<%= project.id %>"
+              method="post"
+              class="w-full sm:w-auto"
+              onsubmit="return confirm('Delete this project permanently?');"
+            >
+              <button class="btn btn-error w-full sm:w-auto">
+                Delete Project
+              </button>
+            </form>
+          </div>
+          <% } %>
+
+          <!-- Quote of the day -->
+          <div class="bg-base-200 rounded-xl p-4 text-center">
+            <h3 class="font-semibold mb-2">Quote of the Day</h3>
+            <p id="quote" class="italic"></p>
+            <p id="author" class="font-semibold mt-1"></p>
           </div>
         </div>
       </div>
 
-      <div class="card bg-base-100 shadow-xl mb-8">
-        <figure>
-          <img
-            src="<%= project.feature_img_url %>"
-            alt="<%= project.title %>"
-          />
-        </figure>
-        <div class="card-body">
-          <p class="mb-4"><%= project.intro_short %></p>
-          <h3 class="font-semibold mb-2">Impact</h3>
-          <p class="mb-4"><%= project.impact %></p>
-          <a
-            href="<%= project.original_source_url %>"
-            target="_blank"
-            class="btn btn-outline btn-primary"
-            >Learn More</a
-          >
-        </div>
-      </div>
-
-      <div class="bg-base-200 p-6 rounded-xl text-center mb-6">
-        <h3 class="text-xl font-semibold mb-2">Quote of the Day</h3>
-        <p id="quote" class="italic"></p>
-        <p id="author" class="font-semibold mt-2"></p>
-      </div>
-
-      <div class="text-center">
+      <div class="text-center mt-10">
         <a
           href="#"
-          onclick="history.back(); return false;"
+          onclick="history.back();return false;"
           class="btn btn-secondary"
           >Go Back</a
         >
@@ -56,18 +83,16 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        fetch("https://dummyjson.com/quotes/random")
-          .then((res) => res.json())
-          .then((data) => {
-            document.getElementById("quote").textContent = `"${data.quote}"`;
-            document.getElementById("author").textContent = `– ${data.author}`;
-          })
-          .catch(() => {
-            document.getElementById("quote").textContent =
-              "Unable to load quote.";
-          });
-      });
+      fetch("https://dummyjson.com/quotes/random")
+        .then((r) => r.json())
+        .then((q) => {
+          document.getElementById("quote").textContent = `"${q.quote}"`;
+          document.getElementById("author").textContent = `– ${q.author}`;
+        })
+        .catch(() => {
+          document.getElementById("quote").textContent =
+            "Unable to load quote.";
+        });
     </script>
   </body>
 </html>

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dim">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Projects</title>
-    <link href="/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
+
   <body>
     <%- include('partials/navbar') %>
 
     <div class="container mx-auto p-6">
+      <!-- hero / sector filter -->
       <div class="hero bg-base-200 rounded-2xl mb-10">
         <div class="hero-content text-center">
           <div class="max-w-md">
             <h1 class="text-5xl font-bold mb-4">Projects</h1>
             <p>Explore projects by sector below.</p>
+
             <div class="flex justify-center flex-wrap gap-3 mt-4">
               <a href="/solutions/projects?sector=Land Sinks" class="btn btn-sm"
                 >Land Sinks</a
@@ -32,17 +35,22 @@
                 class="btn btn-sm"
                 >Electricity</a
               >
-              <a
-                href="/solutions/projects?sector=Food, Agriculture, and Land Use"
-                class="btn btn-sm"
+              <a href="/solutions/projects?sector=Food" class="btn btn-sm"
                 >Food</a
               >
             </div>
+
+            <% if (session && session.user) { %>
+            <a href="/solutions/addProject" class="btn btn-success mt-6"
+              >Add Project</a
+            >
+            <% } %>
           </div>
         </div>
       </div>
 
-      <% if (projects && projects.length > 0) { %>
+      <!-- results table -->
+      <% if (projects && projects.length) { %>
       <div class="overflow-x-auto">
         <table class="table table-zebra w-full">
           <thead>
@@ -50,7 +58,7 @@
               <th>Title</th>
               <th>Sector</th>
               <th>Summary</th>
-              <th>Details</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -61,16 +69,30 @@
                 <a
                   href="/solutions/projects?sector=<%= p.sector %>"
                   class="btn btn-xs btn-outline"
-                  ><%= p.sector %></a
                 >
+                  <%= p.sector %>
+                </a>
               </td>
               <td><%= p.summary_short %></td>
-              <td>
+              <td class="flex gap-1">
                 <a
                   href="/solutions/projects/<%= p.id %>"
                   class="btn btn-xs btn-primary"
                   >Details</a
                 >
+
+                <% if (session && session.user) { %>
+                <a href="/solutions/editProject/<%= p.id %>" class="btn btn-xs"
+                  >Edit</a
+                >
+                <form
+                  action="/solutions/deleteProject/<%= p.id %>"
+                  method="post"
+                  onsubmit="return confirm('Delete this project?');"
+                >
+                  <button class="btn btn-xs btn-error">Delete</button>
+                </form>
+                <% } %>
               </td>
             </tr>
             <% }) %>

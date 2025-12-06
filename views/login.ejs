@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link href="/css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('partials/navbar') %>
+
+    <main class="container mx-auto max-w-md p-6">
+      <h1 class="text-3xl font-bold mb-6 text-center">Login</h1>
+
+      <% if (message) { %>
+      <div role="alert" class="alert alert-error mb-4">
+        <span><%= message %></span>
+      </div>
+      <% } %>
+
+      <form method="post" action="/login" class="space-y-4">
+        <label class="form-control w-full">
+          <span class="label-text">User Name</span>
+          <input
+            name="userName"
+            type="text"
+            value="<%= userName || '' %>"
+            required
+            class="input input-bordered w-full"
+          />
+        </label>
+
+        <label class="form-control w-full">
+          <span class="label-text">Password</span>
+          <input
+            name="password"
+            type="password"
+            required
+            class="input input-bordered w-full"
+          />
+        </label>
+
+        <button class="btn btn-primary w-full">Log In</button>
+      </form>
+    </main>
+  </body>
+</html>

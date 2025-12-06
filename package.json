@@ -1,20 +1,30 @@
 {
   "name": "assignment2",
   "version": "1.0.0",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "tw:build": "npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --minify",
-    "tw:watch": "npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --watch"
+    "vercel-build": "npm run tw:build",
+    "tw:build": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --minify",
+    "tw:watch": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --watch"
+  },
+  "dependencies": {
+    "client-sessions": "^0.8.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "@tailwindcss/typography": "^0.5.19",
+    "sequelize": "^6.37.7"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",
     "daisyui": "^5.4.7",
     "tailwindcss": "^4.1.17"
   },
-  "dependencies": {
-    "@tailwindcss/typography": "^0.5.19",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2"
+  "engines": {
+    "node": ">=18.x"
   }
 }

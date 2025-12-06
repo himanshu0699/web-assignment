@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dim">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Edit <%= project.title %></title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+  <%- include('partials/navbar') %>
+
+  <div class="container mx-auto p-6 max-w-2xl">
+    <h1 class="text-3xl font-bold mb-6 text-center">Edit Project</h1>
+
+    <% if (message) { %>
+      <div class="alert alert-error mb-6"><%= message %></div>
+    <% } %>
+
+    <!-- POSTs to /solutions/editProject/:id -->
+    <form action="/solutions/editProject/<%= project.id %>" method="post" class="space-y-5">
+
+      <input type="hidden" name="id" value="<%= project.id %>">
+
+      <label class="form-control w-full">
+        <span class="label-text">Title</span>
+        <input name="title"
+               class="input input-bordered w-full"
+               required
+               value="<%= project.title %>">
+      </label>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <label class="form-control">
+          <span class="label-text">Summary</span>
+          <textarea name="intro_short" class="textarea textarea-bordered h-32" required><%= project.intro_short %></textarea>
+        </label>
+
+        <label class="form-control">
+          <span class="label-text">Impact</span>
+          <textarea name="impact" class="textarea textarea-bordered h-32"><%= project.impact %></textarea>
+        </label>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <label class="form-control">
+          <span class="label-text">Sector</span>
+          <select name="sector" class="select select-bordered" required>
+            <% sectors.forEach(s => { %>
+              <option value="<%= s.name %>" <%= s.name === project.sector ? "selected" : "" %>><%= s.name %></option>
+            <% }) %>
+          </select>
+        </label>
+
+        <label class="form-control">
+          <span class="label-text">Feature-image URL</span>
+          <input name="feature_img_url" class="input input-bordered"
+                 value="<%= project.feature_img_url %>">
+        </label>
+      </div>
+
+      <label class="form-control w-full">
+        <span class="label-text">Learn-more URL</span>
+        <input name="original_source_url" class="input input-bordered w-full"
+               value="<%= project.original_source_url %>">
+      </label>
+
+      <div class="flex flex-col sm:flex-row gap-4 mt-6">
+        <button class="btn btn-primary flex-1">Save</button>
+        <a href="/solutions/projects" class="btn flex-1">Cancel</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

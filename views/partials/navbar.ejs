@@ -2,9 +2,13 @@
   <div class="flex-1">
     <a href="/" class="text-xl font-bold">Climate Solutions</a>
   </div>
+
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
+      <!-- Static link -->
       <li><a href="/about">About</a></li>
+
+      <!-- Sector dropdown -->
       <li>
         <details>
           <summary>Sector</summary>
@@ -24,12 +28,26 @@
             <li>
               <a
                 href="/solutions/projects?sector=Food, Agriculture, and Land Use"
-                >Food, Agriculture, and Land Use</a
               >
+                Food, Agriculture, and Land Use
+              </a>
+            </li>
+
+            <!-- View-all link (divider + link) -->
+            <li class="border-t border-gray-500 mt-2 pt-2">
+              <a href="/solutions/projects">View All</a>
             </li>
           </ul>
         </details>
       </li>
+
+      <!-- Session-aware links -->
+      <% if (session && session.user) { %>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/logout">Logout (<%= session.user.userName %>)</a></li>
+      <% } else { %>
+      <li><a href="/login">Login</a></li>
+      <% } %>
     </ul>
   </div>
 </div>
